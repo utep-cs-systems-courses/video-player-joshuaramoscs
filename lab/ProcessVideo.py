@@ -28,7 +28,7 @@ def extractFrames():                        # Extract frames from clip and queue
     framesQ.insert(None)                    # insert finished indicator
     print('FINISHED: Extracting frames')
 
-def convertToGrayScale():
+def convertToGrayScale():                   # Convert frames from queue to grayscale and queue them
     global framesQ, grayscaleFramesQ
     count = 0                               # initialize frame count
     frame = framesQ.remove()                # retrieve the first frame from queue
@@ -42,7 +42,7 @@ def convertToGrayScale():
     grayscaleFramesQ.insert(None)
     print('FINISHED Converting frames!')
     
-def displayFrames():
+def displayFrames():                        # Display frames from grayscale queue
     global grayscaleFramesQ
     frameDelay   = 42
     count = 0                               # initialize frame count
