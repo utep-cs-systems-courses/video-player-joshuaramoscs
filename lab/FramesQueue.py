@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import threading
+from threading import *
 
 class FramesQueue:
     def __init__(self):
         self.buff = list()
-        self.full = semaphore(0)    # starts at 0 since buff is empty
-        self.empty = semaphonre(10) # starts at 10 since we only want to hold 10 frames
+        self.full = Semaphore(0)    # starts at 0 since buff is empty
+        self.empty = Semaphore(10) # starts at 10 since we only want to hold 10 frames
 
     def insert(self, frame):     # insert into end of the "queue", will block if buff has 10 frames
         self.empty.acquire()     # decrement empty semaphore since we are filling buff

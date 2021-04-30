@@ -8,8 +8,8 @@ import time
 import threading
 import FramesQueue
 
-global framesQ = FramesQueue()
-global grayscaleFramesQ = FramesQueue()
+framesQ = FramesQueue.FramesQueue()
+grayscaleFramesQ = FramesQueue.FramesQueue()
 
 def extractFrames():                        # Extract frames from clip and queue them
     global framesQ
@@ -18,21 +18,20 @@ def extractFrames():                        # Extract frames from clip and queue
     
     vidcap = cv2.VideoCapture(clipFileName) # open video clip
     success,frame = vidcap.read()           # read first frame
-    print(f'READING: frame {count} {success}')
     
     while success and count < 72:           # vid is 72 frames
-        print(f'Reading frame {count}')
+        print(f'READING: frame {count} {success}')
         framesQ.insert(frame)               # insert frame into FramesQueue
         count += 1
         success,frame = vidcap.read()       # read next frame
     framesQ.insert(None)                    # insert finished indicator
     print('FINISHED: Extracting frames')
 
-def convertToGrayScale():                   # Convert frames from queue to grayscale and queue them
+def convertToGrayscale():                   # Convert frames from queue to grayscale and queue them
     global framesQ, grayscaleFramesQ
     count = 0                               # initialize frame count
     frame = framesQ.remove()                # retrieve the first frame from queue
-
+    
     while frame is not None: # convert until error or end
         print(f'CONVERTING frame {count}')
         grayscaleFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # convert image to grayscale
