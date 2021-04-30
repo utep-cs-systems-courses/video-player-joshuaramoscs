@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 
-import cv2
-import numpy as np
-import base64
-import os
-import time
-import threading
-import FramesQueue
+import cv2, threading, FramesQueue
 
 framesQ = FramesQueue.FramesQueue()
 grayscaleFramesQ = FramesQueue.FramesQueue()
